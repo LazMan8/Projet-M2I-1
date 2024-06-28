@@ -18,7 +18,7 @@ class Controller
 
         include("vue/allP/header.php");
         include("vue/" . $strVue . ".php");
-        include("vue/allP/footer");
+        include("vue/allP/footer.php");
         
     }
 
