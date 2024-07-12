@@ -13,7 +13,7 @@
         try{
             //Connexion à la base de données
             $this->_db = new PDO(
-                "mysql:host=localhost;dbname=quartierlib",
+                "mysql:host=localhost;dbname=quartier_lib",
                 "root",
                 "",
                 array(PDO:ATTR_DEFAULT_FETCH_MODE =>PDO::FETCH_ASSOC) // mode de renvoi
