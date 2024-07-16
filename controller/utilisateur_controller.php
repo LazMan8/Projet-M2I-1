@@ -76,44 +76,91 @@ class utilisateurController extends Controller
         $this->_arrData['strH1']	= "Créer un compte";
         $this->_arrData['strPar']	= "Page permettant de créer son compte";
 
-         // Variables de fonctionnement
-         $this->_arrData['strPage'] 	= "inscription";
+        // Variables de fonctionnement
+        $this->_arrData['strPage'] 	= "inscription";
 
-         $strConfirm_pwd	= $_POST['confirm_pwd']??"";
+        //var_dump($_POST);
+        $strConfirm_pwd	= $_POST['confirm_pwd']??"";
 
-         // Variables pour la gestion des erreurs
-        $arrErrors = [];
-    
-        // Création d'un objet utilisateur (à adapter selon votre logique)
-        $objUser = new User();
+        require_once("entitie/utilisateur_entiter.php");
+        $objUser = new Utilisateur();
+        $objUser->hydrate($_POST);
 
-        // Tentative de création du compte
-        if ($objUser->createAccount()) 
-        {
-            // Message de succès
-            echo "Votre compte a bien été créé, vous pouvez vous connecter";
+        require_once("model/utilisateur_model.php");
+        $objModel   = new UtilisateurModel();
+
+        // initialise le tableau des erreurs
+        $arrErrors	= array();
         
-            // Redirection vers la page de connexion
-            header("Location:index.php?controller=user&action=login");
-            exit();  // Assurez-vous d'ajouter un exit après un header Location pour arrêter l'exécution du script
-        } 
-        
-        else 
+        // Si le formulaire a été envoyé
+        if (count($_POST) > 0)
         {
-            // En cas d'erreur, ajouter un message d'erreur au tableau
-            $arrErrors[] = "Erreur dans l'ajout";
+            // Si l'utilisateur n'a pas saisi son nom
+            if ($objUser->getPseudo() == "")
+            {
+                $arrErrors['pseudo'] = "Le psuedo est obligatoire";
+            }
+                
+            // Si l'utilisateur n'a pas saisi son mail
+            if ($objUser->getMail()  == "")
+            {
+                $arrErrors['mail'] = "Le mail est obligatoire";
+            }
+            
+            elseif(!filter_var($objUser->getMail(), FILTER_VALIDATE_EMAIL))
+            {
+                $arrErrors['mail'] = "Le mail n'est pas valide";
+            }
+            
+            else
+            {
+                // Récupère les utilisateurs qui ont l'adresse Mail
+                $arrUser	= $objModel->getByMail($objUser->getMail());
+
+                // Si j'ai un résultat => erreur
+                if($arrUser !== false)
+                {
+                        $arrErrors['mail'] = "Le mail est déjà utilisé";
+                }
+            }
+
+            // Si l'utilisateur n'a pas saisi son mot de passe
+            if ($objUser->getPwd() == "")
+            {
+                $arrErrors['pwd'] = "Le mot de passe est obligatoire";
+            }
+            
+            elseif ($objUser->getPwd() != $strConfirm_pwd)
+            {
+                $arrErrors['confirm_pwd'] = "Le mot de passe et sa confirmation ne correspondent pas";
+            }
+
+            // Si le formulaire est OK
+            if (count($arrErrors) == 0) 
+            {
+                $boolOk = $objModel->create($objUser);
+
+                if ($boolOk) 
+                {
+                    $_SESSION['message'] = "Vous compte à bien été créé, vous pouvez vous connecter";
+                    // Redirection vers la page d'accueil
+                    header("Location:index.php?controller=user&action=login");
+                }
+                
+                else
+                {
+                    $arrErrors[] = "Erreur dans l'ajout";
+                }
+                
+            }
+            
         }
-
-        // Variables utilisées pour la vue
-        $this->_arrData['objUser'] = $objUser;
-        $this->_arrData['arrErrors'] = $arrErrors;
-
-        // Affichage de la vue
-        $this->_display("create_account");
-
-
-        
-    }
+            // Variables utilisées pour la vue
+            $this->_arrData['objUser']  = $objUser;
+            $this->_arrData['arrErrors'] = $arrErrors;
+            // Affichage
+            $this->_display("creat    e_account");
+        }
 
     public function pwd_forgot()
     {
