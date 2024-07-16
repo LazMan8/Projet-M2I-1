@@ -4,7 +4,7 @@ require ("connexion.php");
 
 // Afficher tous les livres de la base de données
 
-$strQuery = "SELECT * FROM titre";
+$strQuery = "SELECT * FROM livre";
 
 //Préparation
 $bookStatement = $this->_db -> prepare($strQuery);

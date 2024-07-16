@@ -7,7 +7,7 @@ $strQuery = "UPDATE livre SET titre=:titre, nomAuteur=:nomAuteur, prenomAuteur=:
 
 // Préparation
 
-$updateBook = $this->db ->prepare($strQuery);
+$updateBook = $this->_db ->prepare($strQuery);
 
 $updateBook ->execute([
     "titre"=> $_POST["titre"],

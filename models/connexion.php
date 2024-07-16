@@ -16,13 +16,13 @@
                 "mysql:host=localhost;dbname=quartier_lib",
                 "root",
                 "",
-                array(PDO:ATTR_DEFAULT_FETCH_MODE =>PDO::FETCH_ASSOC) // mode de renvoi
+                array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC) // mode de renvoi
             );
             // Résolution des problèmes d'encodage
             $this->_db->exec("SET CHARACTER SET uft8");
 
             // configuration des exceptions
-            $this->_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION).
+            $this->_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         }catch(PDOException$e){
             echo"Echec de connexion : ".$e->getMessage();

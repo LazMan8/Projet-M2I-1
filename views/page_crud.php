@@ -10,23 +10,23 @@
 <body>
     <h1> BONJOUR ET BIENVENUE SUR LE SITE QUARTIER LIB</h1>
 
-    <form action="listBook.php" method="POST">
+    <form action="/PROJET/projet120724/PROJET/projetHTML/models/listBook.php" method="POST">
         <button type="submit" class="btn btn-primary">LISTE DES LIVRES</button>
 
     </form>
 
-    <form action="addBook.php" method="POST">
+    <form action="/PROJET/projet120724/PROJET/projetHTML/models/addBook.php" method="POST">
         <button type="submit" class="btn btn-primary">AJOUT DE LIVRES</button>
 
     </form>
 
-    <form action="updateBook.php" method="POST">
+    <form action="/PROJET/projet120724/PROJET/projetHTML/models/updateBook.php" method="POST">
         <button type="submit" class="btn btn-primary">MISE A JOUR DES LIVRES</button>
 
     </form>
 
 
-    <form action="delBook.php" method="POST">
+    <form action="/PROJET/projet120724/PROJET/projetHTML/models/delBook.php" method="POST">
         <button type="submit" class="btn btn-primary">EFFACEMENT DE LIVRES</button>
 
     </form>

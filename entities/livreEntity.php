@@ -1,8 +1,10 @@
 <?php
 
+
+require_once('entities/motherEntity.php');
 // Entité qui représente la structure d'un livre
 
-class Livre{
+class Livre extends Entity{ 
 
     private string $titre;
     private string $nomAuteur;
@@ -53,23 +55,23 @@ class Livre{
 
     // Setters
 
-    public function setTitre($titre){
-        $this->titre=$titre;
+    public function setTitre($strtitre){
+        $this->titre=$strtitre;
     }
-    public function setNomAuteur($nomAuteur){
-        $this->nomAuteur = $nomAuteur;
+    public function setNomAuteur($strnomAuteur){
+        $this->nomAuteur = $strnomAuteur;
     }
-    public function setPrenomAuteur($prenomAuteur){
-        $this->prenomAuteur=$prenomAuteur;
+    public function setPrenomAuteur($strprenomAuteur){
+        $this->prenomAuteur=$strprenomAuteur;
     }
-    public function setLivreContenu($livreContenu){
-        $this->livreContenu=$livreContenu;  
+    public function setLivreContenu($strlivreContenu){
+        $this->livreContenu=$strlivreContenu;  
     }
-    public function setAnneeParution($anneeParution){
-        $this->anneeParution=$anneeParution;
+    public function setAnneeParution($stranneeParution){
+        $this->anneeParution=$stranneeParution;
     }
-    public function setImages($images){
-        $this->images=$images;
+    public function setImages($strimages){
+        $this->images=$strimages;
     }
 
     // Afficher les livres 
@@ -84,6 +86,9 @@ class Livre{
 
 
 }
+
+
+
 //test d'affichage
 
 $titre1 = new Livre("le horla","Baudelaire","Charles","---- ",1870,"zzz");

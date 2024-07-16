@@ -1,6 +1,7 @@
 <?php
 
-require ("connexion.php");
+require ('connexion.php');
+
 
 // AJOUT D'UN LIVRE AVEC INSERT INTO
 
@@ -8,12 +9,13 @@ $strQuery="INSERT INTO livre(titre, nomAuteur, prenomAuteur, livreContenu, annee
 
 //prépartion
 
-$insertBook = $this->_db ->prepare($strQuery);
+
+$insertBook = $this-> _db ->prepare($strQuery);
 
 // Exécution pour que le livre soit dans la base de données
 
 $insertBook ->execute ([
-    "titre" => $_POST["titre"];
+    "titre" => $_POST["titre"],
     "nomAuteur" => $_POST["nomAuteur"],
     "prenomAuteur" => $_POST["prenomAuteur"],
     "livreContenu" => $_POST["livreContenu"],

@@ -31,7 +31,16 @@
 
     <?php
 
-    // Parcourir le tableau des articles A faire
+    // Parcourir le tableau des livres
+
+    foreach($arrBookToDisplay as $objBook){
+        include("book.php");
+    }
+    ?>
+    </div>
+    
+
+
     
     
 
