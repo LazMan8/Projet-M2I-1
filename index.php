@@ -15,36 +15,25 @@ require('controller/controller_mere.php');
     $strFile    = "controller/".$strCtrl."_controller.php";
 
 
-    if (file_exists($strFile))// Si le fichier existe 
-    {
-    	require_once($strFile);
-    	$strCtrlName = ucfirst($strCtrl) . "Ctrl";
-        if (class_exists($strCtrlName)) // Si la classe existe (après inclusion du fichier)
-        {
-        	$objController = new $strCtrlName();
-            if (method_exists($objController, $strMethod)) // Si la méthode demandée existe dans l'objet instancié
-            {
-            	$objController->$strMethod();
-            }
-            
-            else
-            {
+    if (file_exists($strFile)) 
+    {// Si le fichier existe
+        require_once($strFile);
+        $strCtrlName = ucfirst($strCtrl) . "Controller";
+        if (class_exists($strCtrlName))
+        {// Si la classe existe (après inclusion du fichier)
+            $objController = new $strCtrlName();
+            if (method_exists($objController, $strMethod)) { // Si la méthode demandée existe dans l'objet instancié
+                $objController->$strMethod();
+            }else{
                 $boolNotFound = true;
             }
-        }
-
-        else
-        {
+        }else{
             $boolNotFound = true;
         }
-    }
-
-    else
-    {
+    }else{
         $boolNotFound = true;
     }
 
-    if ($boolNotFound) 
-    {
+    if ($boolNotFound) {
         header("Location:index.php?controller=error&action=error_404");
     }

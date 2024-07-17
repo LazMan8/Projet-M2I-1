@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiblioNumérique - <?php echo $strH1; ?></title>
     <style>
         body 
         {
@@ -25,9 +26,11 @@
 
 <body>
 
+
     <div class="img">
         <img src="" alt="logo du site">
     </div>
+    
     <div class="navBar">
         <a href="index.php">Accueil</a>
         <a href="recherche.php">Recherche</a>

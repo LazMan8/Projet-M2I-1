@@ -2,7 +2,7 @@
     /**
      * Controller des erreurs
      */
-    class ErrorCtrl extends Controller 
+    class ErrorrController extends Controller 
     {
         /**
          * Page 404
