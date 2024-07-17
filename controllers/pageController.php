@@ -16,9 +16,7 @@
             $this->_arrData['strPage'] 	= "about";
 
             $this->_display("about");
-            /*include("views/_partial/header.php");
-            include("views/view_about.php");
-            include("views/_partial/footer.php");*/
+            
         }
 
         /**

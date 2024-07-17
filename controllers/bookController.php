@@ -38,14 +38,7 @@
             // Variables de fonctionnement
             $this->_arrData['strPage']	= "livre";
 
-            /*
-             Directement à traiter via $_POST dans la vue
-            $strKeywords	= $_POST['keywords']??"";
-            $intPeriod		= $_POST['period']??0;
-            $strDate		= $_POST['date']??"";
-            $strStartDate	= $_POST['startdate']??"";
-            $strEndDate		= $_POST['enddate']??"";
-            $intAuthor		= $_POST['author']??0;*/
+           
 
             require_once("models/livreModel.php");
             $objModel   = new livreModel();
