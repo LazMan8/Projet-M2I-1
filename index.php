@@ -12,7 +12,7 @@ require('controller/controller_mere.php');
     // Mettre les tests de vérification sinon 404
     $boolNotFound   = false;
 
-    $strFile    = "controllers/".$strCtrl."_controller.php";
+    $strFile    = "controller/".$strCtrl."_controller.php";
 
 
     if (file_exists($strFile))// Si le fichier existe 
