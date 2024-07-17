@@ -22,18 +22,28 @@ require('controller/controller_mere.php');
         if (class_exists($strCtrlName))
         {// Si la classe existe (après inclusion du fichier)
             $objController = new $strCtrlName();
-            if (method_exists($objController, $strMethod)) { // Si la méthode demandée existe dans l'objet instancié
+            if (method_exists($objController, $strMethod)) // Si la méthode demandée existe dans l'objet instancié
+            { 
                 $objController->$strMethod();
-            }else{
+            }
+            
+            else
+            {
                 $boolNotFound = true;
             }
-        }else{
+        }
+        
+        else
+        {
             $boolNotFound = true;
         }
-    }else{
+    }
+    else
+    {
         $boolNotFound = true;
     }
 
-    if ($boolNotFound) {
+    if ($boolNotFound) 
+    {
         header("Location:index.php?controller=error&action=error_404");
     }

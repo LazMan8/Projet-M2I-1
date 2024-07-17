@@ -162,7 +162,7 @@ class utilisateurController extends Controller
             $this->_display("creat    e_account");
         }
 
-    public function pwd_forgot()
+    public function mdpOubliee()
     {
         // Variables d'affichage
         $this->_arrData['strH1']	= "Mot de passe ouvlier";
