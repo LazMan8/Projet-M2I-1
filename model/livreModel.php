@@ -16,7 +16,7 @@ class LivreModel extends Connexion
 
     public function ajoutDeLivre()
     {
-        $strQuery = "INSERT INTO Livre (titre, nomAuteur, prenomAuteur, livreContenu, anneeParution, images, idGenre) 
+        $strQuery = "INSERT INTO livre (titre, nomAuteur, prenomAuteur, livreContenu, anneeParution, images, idGenre) 
                         VALUES (:titre, :nomAuteur, :prenomAuteur, :livreContenu, :anneeParution, :images, :idGenre)";
         
         $strRqPrep = $this->_db->prepare($strQuery);

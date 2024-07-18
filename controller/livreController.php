@@ -67,7 +67,7 @@ class LivreController extends Controller
                 {
                     $_SESSION['message'] = "Votre livre à bien été créé .";
                     // Redirection vers la page d'accueil
-                    header("Location:index.php?controller=user&action=login");
+                    header("Location:index.php?controller=utilisateur&action=inscription");
                 }
 
                 else 
