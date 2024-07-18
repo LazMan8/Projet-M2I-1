@@ -1,4 +1,5 @@
 <?php
+    require("motherController");
     /**
      * Controller des pages de contenu
      */

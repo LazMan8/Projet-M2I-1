@@ -5,9 +5,9 @@
  * pour les livres
  */
 
- require("models/connexion.php");
+ require("connexion.php");
 
- public class LivreModel extends ModelMother{
+ class LivreModel extends ModelMother{
 
     public function __construct(){
         parent::__construct();
@@ -20,56 +20,66 @@
  */
     public function findAll(int $intLimit=0, int $intOffset=0){
         $boolWhere = false;
-        $strQuery  = "SELECT idLivre,titre,nomAuteur,prenomAuteur,livreContenu, anneeParution, images
+        $strQuery  = "SELECT livre.idLivre,titre,nomAuteur,prenomAuteur,livreContenu, anneeParution, images,genre
         FROM livre
-            INNER JOIN listegenres ON idGenre = idLivre";
+            INNER JOIN genre ON livre.idGenre = genre.idGenre";
 
-    }
+    
 
     // Recherche par mot clé
         // Recherche par le titre
 
-    $strKeyword = $_POST['keywords']??"";
-    if($strKeyword !=''){
-        $strQuery.= "WHERE titre LIKE '%".$strKeyword."%'";
-        $boolWhere=true;
+        $strTitre = $_POST['titre']??"";
+        if ($strTitre !=''){
+            $strQuery.= " WHERE titre LIKE '%".$strTitre."%'";
+            $boolWhere=true;
 
-    }
+        }
     // recherche par nom d'auteur
 
-    $intnomAuteur = $_POST['nomAuteur']??0;
-    if ($intnomAuteur>0){
-        $strQuery .=($boolWhere)?0 " AND ":" WHERE ";
-        $strQuery.= "nomAuteur = ".$intnomAuteur; 
+        $strNomAuteur = $_POST['nomAuteur']??"";
+        if ($strNomAuteur !=""){
+            $strQuery .=($boolWhere)? " AND ":" WHERE ";
+            $strQuery.= "nomAuteur LIKE '%".$strNomAuteur ."%'";
+            $boolWhere=true;
 
-    }
+        }
+        // Recherche par année
+        $strDate = $_POST['anneeParution']??"";
+        if($strDate !=''){
+            $strQuery .=($boolWhere)?" AND ":" WHERE ";
+            $strQuery .= "anneeParution = '".$strDate."' ";
+            $boolWhere .= true;
+        }
+         // Recherche par genre
 
-    $strQuery.= "ORDER BY titre DESC ";
-    if($intLimit>0) {
-        $strQuery .=" LIMIT ".$intLimit." OFFSET ".$intOffset;
+         $strGenre = $_POST['genre']??"";
+         var_dump($_POST);
+         if($strGenre !=""){
+             $strQuery .=($boolWhere)?" AND ":" WHERE ";
+             $strQuery .="genre LIKE '%".$strGenre ."%'"; 
+             $boolWhere .= true;
+         }
 
-    }
+        $strQuery.= " ORDER BY titre DESC ";
+        if($intLimit>0) {
+            $strQuery .=" LIMIT ".$intLimit." OFFSET ".$intOffset;
+
+        }
+
+       
 
     // Execution de la requête et affichage des résultats
-    return $this->_db->query($strQuery)->fetchall();
-
-    // Recherche par année
-
-    $strDate = $_POST['anneeParution']??"";
-    if($strDate !=''){
-        $strQuery .=($boolWhere)?" AND ":" WHERE ";
-        $strQuery .= "anneeParution = '".$strDate."' ";
-        $boolWhere .= true;
-
+        var_dump($strQuery);
+        return $this->_db->query($strQuery)->fetchall();
     }
-     $strQuery.="ORDER BY nomAuteur AND titre ";
-     if($intLimit>0){
-        $strQuery .=" LIMIT ".$intLimit." OFFSET ".$instOffset;
-     }
-
-     return $this->_db->query($strQuery)->fetchall();
-
     
 
 
- }
+    
+     
+
+
+
+}
+

@@ -1,7 +1,7 @@
 <?php
 
 
-require_once('entities/motherEntity.php');
+require ("motherEntity.php");
 // Entité qui représente la structure d'un livre
 
 class Livre extends Entity{ 
@@ -12,18 +12,21 @@ class Livre extends Entity{
     private string $livreContenu;
     private int $anneeParution;
     private string $images;
+    private string $genre;
+    
 
 
 
     // Constructeur
 
-    public function __construct(string $titre,string $nomAuteur,string $prenomAuteur,string $livreContenu,int $anneeParution,string $images){
+    public function __construct(string $titre,string $nomAuteur,string $prenomAuteur,string $livreContenu,int $anneeParution,string $images, $genre){
         $this->titre = $titre;
         $this->nomAuteur = $nomAuteur;
         $this->prenomAuteur = $prenomAuteur;
         $this->livreContenu = $livreContenu;
         $this->anneeParution = $anneeParution;
         $this->images = $images;
+        $this->genre = $genre;
 
     }
     // Methode toString
@@ -52,6 +55,9 @@ class Livre extends Entity{
     public function getImages(){
         return $this-> images;
     }
+    public function getGenre(){
+        return $this->genre;
+    }
 
     // Setters
 
@@ -73,26 +79,14 @@ class Livre extends Entity{
     public function setImages($strimages){
         $this->images=$strimages;
     }
+    public function setGenre($strGenre){
+        $this->genre=$strGenre;
+    }
 
-    // Afficher les livres 
-
-    /*public function afficherLivre(){
-        result="";
-        foreach($this->_titre as $titre){
-            $result.=$titre->getTitre()."<br>";
-        }
-        return $result;
-    }*/
+  
 
 
 }
 
 
-
-//test d'affichage
-
-$titre1 = new Livre("le horla","Baudelaire","Charles","---- ",1870,"zzz");
-$titre2= new Livre("zzz","yyy","xxx","---",2010,"aaa");
-echo $titre1;
-echo $titre2;
 

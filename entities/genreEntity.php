@@ -1,15 +1,13 @@
 <?php
-
 // Entité qui représente le genre de livre
 
-Class Genre{
+Class Genre {
     private string $genre;
 
-}
 
 // Constructeur
 
-public function__construct(string $genre){
+public function __construct(string $genre){
     $this-> genre = $genre;
 
 }
@@ -24,4 +22,5 @@ public function getGenre(){
 
 public function setGenre($genre){
     $this->genre=$genre;
+}
 }

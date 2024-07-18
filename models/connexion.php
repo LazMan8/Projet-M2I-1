@@ -19,7 +19,7 @@
                 array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC) // mode de renvoi
             );
             // Résolution des problèmes d'encodage
-            $this->_db->exec("SET CHARACTER SET uft8");
+            $this->_db->exec("SET CHARACTER SET utf8mb4");
 
             // configuration des exceptions
             $this->_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

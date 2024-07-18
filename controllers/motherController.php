@@ -11,8 +11,8 @@ class Controller{
             $$key     = $value;
         }
 
-        include("views/_partial/header.php");
-        include("views/view_".$strView.".php");
-        include("views/_partial/footer.php");
+       // include("views/partial/header.php");
+        include("views/".$strView."View.php");
+        //include("views/partial/footer.php");
     }
 }
