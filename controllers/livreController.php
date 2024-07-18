@@ -57,7 +57,7 @@
          * @return void
          */
         public function addBook()
-        {
+        {   
             if (!isset($_SESSION['id']) || $_SESSION['id'] == '') {
                 header("Location:index.php?controller=error&action=error_403");// à voir
             }
@@ -68,8 +68,72 @@
             // Variables de fonctionnement
             $this->_arrData['strPage'] 	= "addBook";
 
-            $this->_display("addBook");
+            /*
+            require_once("entities/livreEntity");
+            var_dump("$arrBook");
+            $objBook = new Livre($arrBook["titre"],$arrBook["nomAuteur"],$arrBook["prenomAuteur"],$arrBook["livreContenu"],$arrBook["anneeParution"],$arrBook["images"], $arrBook["genre"]);
+            
+        
+            require_once("models/livreModel.php");
+            $objLivreModel = new LivreModel();
+            
+        
+
+            // Initialisation du tableau des erreurs
+            $arrErrors = array();
+
+            if (count($_POST)>0){
+                if($objBook->getTitre() ==""){
+                    $arrErrors ['titre'] = "Vous devez saisir le titre";
+
+                }
+                if($objBook->getNomAuteur() ==""){
+                    $arrErrors ['nomAuteur'] = "Vous devez saisir le nom de l'auteur";
+                }
+                if($objBook->getPrenomAuteur() ==""){
+                    $arrErrors ['prenomAuteur'] = "Vous devez saisir le prénom de l'auteur";
+                }
+                if($objBook->getLivreContenu() ==""){
+                    $arrErrors ['livreContenu'] = "Vous devez saisir le contenu";
+                }
+                if ($objBook->getAnneeParution() ==""){
+                    $arrErrors ['anneeParution'] = "Vous devez saisir l'année de parution";
+                }
+                if($objBook->getImages() ==""){
+                    $arrErrors ['images'] = "Vous devez fournir une image";
+                }
+                if($objBook->getGenre() ==""){
+                    $arrErrors  ['genre'] = "Vous devez saisir le genre";
+                }
+
+            }
+
+
+            // Si formulaire est validé
+
+            if(count($arrErrors == 0)){
+                $boolOk = $objLivreModel->addBook();
+            }
+            if ($boolOk){
+                $_SESSION['message'] = "Votre livre a bien été créé.";
+
+                // Redirection vers la page addBook
+                header("Location:index.php?controller=livre&action=addBook");
+            } else {
+                $arrErrors[]= "Erreur. Le livre n'a pas été ajouté";
+            }
+            // Variables utilisées pourla vue
+
+            $this->_arrData['objBook'] = $objBook;
+            $this->_arrData['arrErrors'] = $arrErrors;*/
+            
+            //Affichage
+
+            //var_dump($_POST);
+            $this->_display("addBook"); // $this->display("livreInsere")
+
         }
+
 
         private function _arrayToObject($arrBooks){
             $arrBookToDisplay = array();
@@ -83,3 +147,5 @@
             return $arrBookToDisplay;
         }
     }
+
+     //http://localhost/projet120724/PROJET/projetHTML/index.php?controller=livre&action=addBook

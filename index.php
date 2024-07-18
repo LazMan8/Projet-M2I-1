@@ -1,12 +1,13 @@
 <?php
     session_start();
-
+   
     require_once("controllers/motherController.php");
-
+    $_SESSION['id']=1;
     /* Dispatcher  */
     $strCtrl    = $_GET['controller']??'livre';
     $strMethod  = $_GET['action']??'index';
-
+    
+  
     // Mettre les tests de vérification sinon 404
     $boolNotFound   = false;
     
@@ -33,3 +34,4 @@
     if ($boolNotFound) {
         header("Location:index.php?controller=error&action=error_404");
     }
+    //http://localhost/projet120724/PROJET/projetHTML/index.php?controller=livre&action=addBook

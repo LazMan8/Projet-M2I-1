@@ -3,7 +3,7 @@
 require ("connexion.php");
 
 // Mise à jour d'un livre avec update et set
-$strQuery = "UPDATE livre SET titre=:titre, nomAuteur=:nomAuteur, prenomAuteur=:prenomAuteur, livreContenu=:livreContenu, anneeParution=:anneeParution, images=:images WHERE titre=:titre ";
+$strQuery = "UPDATE livre SET titre=:titre, nomAuteur=:nomAuteur, prenomAuteur=:prenomAuteur, livreContenu=:livreContenu, anneeParution=:anneeParution, genre=:genre, images=:images WHERE titre=:titre ";
 
 // Préparation
 
@@ -15,6 +15,7 @@ $updateBook ->execute([
     "prenomAuteur"=> $_POST["prenomAuteur"],
     "livreContenu"=>$_POST["livreContenu"],
     "anneParution"=>$_POST["anneeParution"],
+    "genre"=>$_POST["genre"],
     "images"=>$_POST["images"]
 ]);
 

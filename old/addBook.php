@@ -5,7 +5,7 @@ require ('connexion.php');
 
 // AJOUT D'UN LIVRE AVEC INSERT INTO
 
-$strQuery="INSERT INTO livre(titre, nomAuteur, prenomAuteur, livreContenu, anneeParution, images) VALUES (:titre, :nomAuteur, :prenomAuteur, :livreContenu, :anneeParution, :images";
+$strQuery="INSERT INTO livre(titre, nomAuteur, prenomAuteur, livreContenu, anneeParution, genre, images) VALUES (:titre, :nomAuteur, :prenomAuteur, :livreContenu, :anneeParution, :genre, :images";
 
 //prépartion
 
@@ -20,6 +20,7 @@ $insertBook ->execute ([
     "prenomAuteur" => $_POST["prenomAuteur"],
     "livreContenu" => $_POST["livreContenu"],
     "annneeParution" => $_POST["anneeParution"],
+    "genre" => $_POST["genre"],
     "images"=> $_POST["images"]
 
 ]);
