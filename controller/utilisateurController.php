@@ -144,7 +144,7 @@ class utilisateurController extends Controller
             // Si le formulaire est OK
             if (count($arrErrors) == 0) 
             {
-                $boolOk = $objModel->create($objUser);
+                $boolOk = $objModel->createUtilsateur();
                 var_dump($objModel);
                 die();
 

@@ -47,7 +47,9 @@
                 <a href="deconnexion.php">Déconnexion</a>
                 <a href="#">Role: <?php echo $_SESSION['role']; ?></a>
             <?php
-            } 
+            }
+
+            
                 
             else 
             {

@@ -86,7 +86,7 @@ class UtilisateurModel extends Connexion
 
     // fonction ajoute un utlilisateur qui vient de s'inscrire
 
-    public function create(): bool
+    public function createUtilsateur(): bool
     {
         $strQuery = "INSERT INTO utilisateur (pseudo, email, mdp) VALUES (:pseudo, :email, :mdp);";
 
