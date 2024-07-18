@@ -18,6 +18,7 @@ class LivreController extends Controller
 
         require_once("model/livreModel.php");
         $objLivreModel = new LivreModel();
+        
 
         // initialise le tableau des erreurs
         $arrErrors	= array();
@@ -28,6 +29,8 @@ class LivreController extends Controller
             {
                 $arrErrors['titre'] = "Le titre est obligatoire";
             }
+
+            var_dump($_POST);
             
             if ($objLivre->getNomAuteur() == "") 
             {
@@ -67,7 +70,7 @@ class LivreController extends Controller
                 {
                     $_SESSION['message'] = "Votre livre à bien été créé .";
                     // Redirection vers la page d'accueil
-                    header("Location:index.php?controller=utilisateur&action=inscription");
+                    header("Location:index.php?controller=page&action=index");
                 }
 
                 else 

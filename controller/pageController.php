@@ -35,6 +35,8 @@ class PageController extends Controller
 
         // Variables de fonctionnement
         $this->_arrData['strPage']	= "index";
+
+        $this->_display("index");
     }
 
 

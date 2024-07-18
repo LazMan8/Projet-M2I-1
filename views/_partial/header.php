@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BiblioNumérique - <?php echo $strH1; ?></title>
+    <title>Biblio Numérique - <?php echo $strH1; ?></title>
     <style>
         header 
         {
+            display: flex;
             background-color: #f0f0f0;
             border: solid 1px black;
+            justify-content: space-evenly;
         }
 
-        .navBar 
+        .navBar a
         {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
         }
         .img 
         {
@@ -26,6 +28,8 @@
         {
             background-color: #f0f0f0;
             border: solid 1px black;
+            display: flex;
+            justify-content: center;
         }
     </style>
 </head>
@@ -34,7 +38,7 @@
 
         <header>
             <div class="img">
-            <img src="" alt="logo du site">
+            <a href="index.php"><img src="" alt="logo de site"></a>
             </div>
     
             <div class="navBar">
@@ -54,7 +58,7 @@
             else 
             {
             ?>
-                <a href="connexion.php">Connexion</a>
+                <a href="">Connexion</a>
             <?php
             }
             ?>

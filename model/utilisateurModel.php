@@ -34,7 +34,7 @@ class UtilisateurModel extends Connexion
     public function findByMailAndPwd(): array|bool 
     {
         // Vérifie l'utilisateur par son mail
-        $strQuery = "SELECT pseudo, email, mdp
+        $strQuery = "SELECT idUtilisateur, pseudo, email, mdp
                      FROM utilisateur 
                      WHERE email = :email;";
         $strRqPrep = $this->_db->prepare($strQuery);
@@ -42,13 +42,16 @@ class UtilisateurModel extends Connexion
         $strRqPrep->bindValue(":email", $_POST['email'], PDO::PARAM_STR);
         $strRqPrep->execute();
         $arrUser = $strRqPrep->fetch();
-        var_dump($arrUser);
-
+    
+        
         // Vérification du mot de passe
-        if ($arrUser!== false && password_verify($_POST['password'], $arrUser['mdp'])) 
+        if (count($arrUser) > 0 && password_verify($_POST['password'], $arrUser['mdp'])) 
         {
-            unset($arrUser['mdp']);
+            
+            var_dump($arrUser);
+            //unset($arrUser['mdp']);
             return $arrUser;
+            
         }
         return false;
     }
@@ -86,25 +89,21 @@ class UtilisateurModel extends Connexion
 
     // fonction ajoute un utlilisateur qui vient de s'inscrire
 
-    public function createUtilsateur(): bool
+    public function create(): bool
     {
-        $strQuery = "INSERT INTO utilisateur (pseudo, email, mdp) VALUES (:pseudo, :email, :mdp);";
+
+        var_dump($_POST);
+        $strQuery = "INSERT INTO utilisateur (pseudo, email, mdp) 
+                 VALUES (:pseudo, :email, :mdp);";
 
         $strRqPrep = $this->_db->prepare($strQuery);
         $strRqPrep->bindValue(":pseudo", $_POST['pseudo'], PDO::PARAM_STR);
         $strRqPrep->bindValue(":email", $_POST['email'], PDO::PARAM_STR);
         $strRqPrep->bindValue(":mdp", password_hash($_POST['mdp'], PASSWORD_BCRYPT), PDO::PARAM_STR);
-        //$strRqPrep->bindValue(":idStatut", $_POST['statut'], PDO::PARAM_INT);
-        //$strRqPrep->bindValue(":idRole", $_POST['role'], PDO::PARAM_INT);
 
         // execute tous ce qui a ete fait en amont
-
-        $strRqPrep->execute();
-
-        return true;
-
         
-
+        return $strRqPrep->execute();
     }
 
 

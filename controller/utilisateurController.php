@@ -20,10 +20,10 @@ class utilisateurController extends Controller
     $this->_display("connexion");
 
     var_dump($_POST);
-    var_dump($arrErrors);
     // Si le formulaire a été envoyé
     if (count($_POST) > 0) 
     {
+        var_dump(count($_POST));
         if ($_POST['email'] == '')
         {
             $arrErrors['email'] = "L'email est obligatoire";
@@ -31,19 +31,22 @@ class utilisateurController extends Controller
 
         if ($_POST['password'] == '')
         {
-            $arrErrors['password'] = "Le mot de passe est obligatoire";
+            $arrErrors['mdp'] = "Le mot de passe est obligatoire";
         }
 
+        
         if (count($arrErrors) === 0) 
         {
-            require_once("model/utilisateur_model.php");
+            var_dump(count($arrErrors));
+            
+            require_once("model/utilisateurModel.php");
             $objModel = new UtilisateurModel();
             $arrUser = $objModel->findByMailAndPwd();
-            var_dump($arrUser);
             
+            var_dump($arrUser);
             if ($arrUser !== false) 
             {
-                $_SESSION['id']     = $arrUser['user_id'];
+                $_SESSION['id']     = $arrUser['idUtilisateur'];
                 $_SESSION['email'] = $arrUser['email'];
                 $_SESSION['message']= "Vous êtes bien connecté";
                 header("Location:index.php");
@@ -53,6 +56,7 @@ class utilisateurController extends Controller
                 $arrErrors[] = "Erreur de connexion";
             }
         }
+        
         
         $this->_arrData["arrErrors"] = $arrErrors;
         }
@@ -86,13 +90,12 @@ class utilisateurController extends Controller
         $objUser = new UtilisateurEntity();
         $objUser->hydrate($_POST);
 
-        var_dump($objUser);
+        
 
         require_once("model/utilisateurModel.php");
-        $objModel   = new UtilisateurModel();
+        $objModel  = new UtilisateurModel();
 
         var_dump($objModel);
-
         // initialise le tableau des erreurs
         $arrErrors	= array();
         var_dump($objUser->getPseudo());
@@ -122,7 +125,7 @@ class utilisateurController extends Controller
             {
                 // Récupère les utilisateurs qui ont l'adresse Mail
                 $arrUser = $objModel->rechercheMail($objUser->getEmail());
-                
+                var_dump($arrUser);
                 // Si j'ai un résultat => erreur
                 if($arrUser !== false)
                 {
@@ -144,21 +147,23 @@ class utilisateurController extends Controller
             // Si le formulaire est OK
             if (count($arrErrors) == 0) 
             {
-                $boolOk = $objModel->createUtilsateur();
-                var_dump($objModel);
-                die();
+                $boolOk = $objModel->create();
+                
 
                 if ($boolOk) 
                 {
                     $_SESSION['message'] = "Vous compte à bien été créé, vous pouvez vous connecter";
                     // Redirection vers la page d'accueil
-                    header("Location:index.php?controller=user&action=login");
+                    header("Location:index.php?controller=utilisateur&action=inscription");
+                    
                 }
                 
                 else
                 {
                     $arrErrors[] = "Erreur dans l'ajout";
                 }
+
+                die();
                 
             }
             

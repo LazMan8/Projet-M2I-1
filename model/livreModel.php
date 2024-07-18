@@ -14,26 +14,32 @@ class LivreModel extends Connexion
         parent::__construct();
     }
 
+    // LivreModel.php
     public function ajoutDeLivre()
-    {
+    {  
         $strQuery = "INSERT INTO livre (titre, nomAuteur, prenomAuteur, livreContenu, anneeParution, images, idGenre) 
-                        VALUES (:titre, :nomAuteur, :prenomAuteur, :livreContenu, :anneeParution, :images, :idGenre)";
+                    VALUES (:titre, :nomAuteur, :prenomAuteur, :livreContenu, :anneeParution, :images, :idGenre);";
         
         $strRqPrep = $this->_db->prepare($strQuery);
 
-        $strRqPrep->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
-        $strRqPrep->bindValue(':titre', $_POST['titre'], PDO::PARAM_STR);
-        $strRqPrep->bindValue(':nomAuteur', $_POST['nomAuteur'], PDO::PARAM_STR);
-        $strRqPrep->bindValue(':prenomAuteur', $_POST['prenomAuteur'], PDO::PARAM_STR);
-        $strRqPrep->bindValue(':livreContenu', $_POST['LivreContenu'], PDO::PARAM_STR);
-        $strRqPrep->bindValue(':anneeParution', $_POST['anneParution'], PDO::PARAM_STR);
-        $strRqPrep->bindValue(':images', $_POST['image'], PDO::PARAM_STR);
-        $strRqPrep->bindValue(':idGenre', $_POST['idGenre'], PDO::PARAM_STR);
+        try 
+        {
+            $strRqPrep->bindValue(':titre', $_POST['titre'], PDO::PARAM_STR);
+            $strRqPrep->bindValue(':nomAuteur', $_POST['nomAuteur'], PDO::PARAM_STR);
+            $strRqPrep->bindValue(':prenomAuteur', $_POST['prenomAuteur'], PDO::PARAM_STR);
+            $strRqPrep->bindValue(':livreContenu', $_POST['livreContenu'], PDO::PARAM_STR);
+            $strRqPrep->bindValue(':anneeParution', $_POST['anneeParution'], PDO::PARAM_INT);
+            $strRqPrep->bindValue(':images', file_get_contents($_FILES['images']['tmp_name']), PDO::PARAM_LOB);
+            $strRqPrep->bindValue(':idGenre', $_POST['idGenre'], PDO::PARAM_INT);
 
-        $resultat = $strRqPrep->fetch(PDO::FETCH_ASSOC);
+            $strRqPrep->execute();
 
-        return $resultat;
-
+            return true;
+        } 
+        catch (PDOException $e) 
+        {
+            return false;
+        }
     }
 
 

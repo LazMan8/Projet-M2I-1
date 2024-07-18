@@ -6,8 +6,8 @@ require('controller/motherController.php');
 
 
 /* Dispatcher  */
-    $strCtrl    = $_GET['controller']??'utilisateur';
-    $strMethod  = $_GET['action']??'inscription';
+    $strCtrl    = $_GET['controller']??'page';
+    $strMethod  = $_GET['action']??'index';
     
 
     // Mettre les tests de vérification sinon 404

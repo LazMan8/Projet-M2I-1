@@ -1,7 +1,7 @@
 <h1><?= $strH1 ?></h1>
 <p><?= $strPar ?></p>
 
-<form method="post" action="">
+<form method="post">
     <label for="titre">Titre :</label>
     <input type="text" id="titre" name="titre" required><br><br>
 
