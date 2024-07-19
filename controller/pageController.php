@@ -22,6 +22,8 @@ class PageController extends Controller
 
         // Variables de fonctionnement
         $this->_arrData['strPage']	= "contact";
+
+        $this->_display("contact");
         
 
     }
