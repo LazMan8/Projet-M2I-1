@@ -53,6 +53,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="index.php?controller=utilisateur&action=connexion">Connexion</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.php?controller=utilisateur&action=inscription">Inscription</a>
+                                </li>
                             <?php
                             }
                             ?>

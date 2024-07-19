@@ -100,8 +100,7 @@ class utilisateurController extends Controller
         var_dump($objModel);
         // initialise le tableau des erreurs
         $arrErrors	= array();
-        var_dump($objUser->getPseudo());
-        var_dump($objUser->geteMail());
+        
         // Si le formulaire a été envoyé
         if (count($_POST) > 0)
         {
@@ -156,7 +155,7 @@ class utilisateurController extends Controller
                 {
                     $_SESSION['message'] = "Vous compte à bien été créé, vous pouvez vous connecter";
                     // Redirection vers la page d'accueil
-                    header("Location:index.php?controller=utilisateur&action=inscription");
+                    header("Location:index.php?controller=utilisateur&action=connexion");
                     
                 }
                 

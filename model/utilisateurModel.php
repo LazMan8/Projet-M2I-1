@@ -43,7 +43,7 @@ class UtilisateurModel extends Connexion
         $strRqPrep->execute();
         $arrUser = $strRqPrep->fetch();
     
-        
+        var_dump(count($arrUser));
         // Vérification du mot de passe
         if (count($arrUser) > 0 && password_verify($_POST['password'], $arrUser['mdp'])) 
         {
