@@ -41,6 +41,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="index.php?controller=page&action=contact">Contact</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?controller=page&action=about">About</a>
+                            </li>
                             <?php
                             if (isset($_SESSION['id'])) {
                             ?>

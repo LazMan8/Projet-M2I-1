@@ -97,7 +97,6 @@ class utilisateurController extends Controller
         require_once("model/utilisateurModel.php");
         $objModel  = new UtilisateurModel();
 
-        var_dump($objModel);
         // initialise le tableau des erreurs
         $arrErrors	= array();
         
