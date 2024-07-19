@@ -45,10 +45,10 @@
                 <a href="index.php">Accueil</a>
                 <a href="recherche.php">Recherche</a>
             <?php
-            if (isset($_SESSION['user_id'])) 
+            if (isset($_SESSION['id'])) 
             {
             ?>
-                <a href="deconnexion.php">Déconnexion</a>
+                <a href="index.php?controller=utilisateur&action=deconnexion">Déconnexion</a>
                 <a href="#">Role: <?php echo $_SESSION['role']; ?></a>
             <?php
             }
@@ -58,7 +58,7 @@
             else 
             {
             ?>
-                <a href="">Connexion</a>
+                <a href="index.php?controller=utilisateur&action=connexion">Connexion</a>
             <?php
             }
             ?>

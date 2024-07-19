@@ -19,7 +19,7 @@ class utilisateurController extends Controller
     // Affiche le formulaire de connexion
     $this->_display("connexion");
 
-    var_dump($_POST);
+    
     // Si le formulaire a été envoyé
     if (count($_POST) > 0) 
     {
@@ -27,28 +27,30 @@ class utilisateurController extends Controller
         if ($_POST['email'] == '')
         {
             $arrErrors['email'] = "L'email est obligatoire";
+            var_dump($arrErrors);
         }
 
         if ($_POST['password'] == '')
         {
             $arrErrors['mdp'] = "Le mot de passe est obligatoire";
+            var_dump($arrErrors);
         }
 
         
         if (count($arrErrors) === 0) 
         {
-            var_dump(count($arrErrors));
+
             
             require_once("model/utilisateurModel.php");
             $objModel = new UtilisateurModel();
             $arrUser = $objModel->findByMailAndPwd();
             
-            var_dump($arrUser);
             if ($arrUser !== false) 
             {
                 $_SESSION['id']     = $arrUser['idUtilisateur'];
                 $_SESSION['email'] = $arrUser['email'];
                 $_SESSION['message']= "Vous êtes bien connecté";
+
                 header("Location:index.php");
             } 
             else 
