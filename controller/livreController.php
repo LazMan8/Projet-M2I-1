@@ -87,6 +87,11 @@ class LivreController extends Controller
         // Affichage
         $this->_display("addBook");
     }
+
+    public function openPDF()
+    {
+            
+    }
         
 
 }
