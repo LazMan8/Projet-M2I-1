@@ -24,8 +24,32 @@ class PageController extends Controller
         $this->_arrData['strPage']	= "contact";
 
         $this->_display("contact");
+
+        // initialise le tableau des erreurs
+        $arrErrors	= array();
+        
+        // Si le formulaire a été envoyé
+        if (count($_POST) > 0)
+        {
+            header("Location:index.php?controller=page&action=confirmationEnvoieFormContact");
+        }
+
+
+        
         
 
+    }
+
+    public function confirmationEnvoieFormContact()
+    {
+        // Variables d'affichage
+        $this->_arrData['strH1']	= "confirme l'Envoie";
+        $this->_arrData['strPar']	= "Votre message a bien ete envoyer.";
+
+        // Variables de fonctionnement
+        $this->_arrData['strPage']	= "confirmeEnvoie";
+
+        $this->_display("confirmeEnvoie");    
     }
 
     // affichage de l'index
